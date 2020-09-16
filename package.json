@@ -1,0 +1,51 @@
+{
+  "name": "js-client-sample-project",
+  "version": "0.0.1",
+  "description": "A sample project with some basic build tools for starting a new Javascript client app.",
+  "author": "Rob McLarty <r@robmclarty.com> (http://robmclarty.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:robmclarty/js-client-sample-project.git"
+  },
+  "scripts": {
+    "start": "npm run serve",
+    "test": "haha, no",
+    "lint": "npx standard --verbose | npx snazzy",
+    "serve": "serve ./build --cors --listen 3333",
+    "watch": "npx run-s build:clean build:assets build:bundle:watch",
+    "build": "npx run-s build:clean build:assets build:bundle",
+    "build:prod": "ROLLUP_ENV=production && npm run build && npm run build:rev",
+    "build:bundle": "npx rollup --config rollup.config.js",
+    "build:bundle:watch": "npx rollup --config rollup.config.js --watch",
+    "build:clean": "npx rimraf ./build/*",
+    "build:assets": "ncp ./assets ./build",
+    "build:rev": "npx fuzzle rev --dir ./build"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-multi-entry": "^4.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "fuzzle": "^0.3.2",
+    "ncp": "^2.0.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.4",
+    "rollup-plugin-postcss": "^3.1.5",
+    "rollup-plugin-sizes": "^1.0.3",
+    "rollup-plugin-terser": "^7.0.0",
+    "serve": "^11.3.2",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.4"
+  }
+}
